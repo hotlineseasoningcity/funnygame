@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
-    public float movSpd, rotateSpd;
+    public float movSpd;
     float horizontal, vertical;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
    
-    void Start()
+    void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -25,13 +25,13 @@ public class CharMove : MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(horizontal, vertical).normalized * movSpd;
-        if(Input.GetKey(KeyCode.A))
+        if (horizontal < 0)
         {
-            this.transform.Rotate(Vector3.forward, rotateSpd * Time.deltaTime);
+            sr.flipX = true;
         }
-        if(Input.GetKey(KeyCode.D))
+        else
         {
-            this.transform.Rotate(Vector3.forward, -rotateSpd * Time.deltaTime);
+            sr.flipX = false;
         }
     }
 
