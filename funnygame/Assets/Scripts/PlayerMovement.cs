@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public float movSpd;
+    public float moveSpd;
     float horizontal, vertical;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
-   
+
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -24,15 +24,7 @@ public class PlayerMove : MonoBehaviour
 
     void Move()
     {
-        rb.velocity = new Vector2(horizontal, vertical).normalized * movSpd;
-        if (horizontal < 0)
-        {
-            sr.flipX = true;
-        }
-        else
-        {
-            sr.flipX = false;
-        }
+        rb.velocity = new Vector2(horizontal, vertical).normalized * moveSpd;
     }
 
     void Update()

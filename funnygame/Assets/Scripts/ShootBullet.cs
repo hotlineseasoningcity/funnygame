@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootBullet : MonoBehaviour
 {
-    public float bulletSpd;
+    public float bulletSpd, bulletLifetime;
 
     public GameObject prefabBullet;
     public Transform spawnerBullet;
@@ -15,7 +15,7 @@ public class ShootBullet : MonoBehaviour
         {
             GameObject newBullet = Instantiate(prefabBullet, spawnerBullet.position, spawnerBullet.rotation);
             newBullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 10, ForceMode2D.Impulse);
-            Destroy(newBullet, 0.5f);
+            Destroy(newBullet, bulletLifetime);
         }
     }
 
