@@ -8,13 +8,12 @@ public class GameManager : MonoBehaviour
     public float probSpawnEnemies;
 
 
-    public GameObject[] prefabEnemies;
+    public GameObject prefabEnemy;
     public Transform spawnerEnemies;
 
     //enemies
 
     public float spdEnemies;
-    public Vector3 dirEnemies = new(0, 5, 0);
 
     public void SpawnEnemies()
     {
@@ -22,13 +21,10 @@ public class GameManager : MonoBehaviour
         currentTimeTimer += Time.deltaTime;
         if (currentTimeTimer >= timer)
         {
-            if (probSpawnEnemies <= 0.2)
+            if (probSpawnEnemies <= 0.5)
             {
-                GameObject newEnemy = Instantiate(prefabEnemies[Random.Range(1, prefabEnemies.Length)], spawnerEnemies.position, spawnerEnemies.rotation);
-                newEnemy.GetComponent<Enemies>().gm = this;
-                newEnemy.GetComponent<Enemies>().dir = dirEnemies;
-                newEnemy.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-                Destroy(newEnemy, 2);
+                GameObject newEnemy = Instantiate(prefabEnemy, spawnerEnemies.position, spawnerEnemies.rotation);
+                Destroy(newEnemy, 1);
                 currentTimeTimer = 0;
             }
         }

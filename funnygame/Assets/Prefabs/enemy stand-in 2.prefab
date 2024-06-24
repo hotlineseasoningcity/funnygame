@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6394644998216687946}
   - component: {fileID: 7216607504163537661}
-  - component: {fileID: 178053639945641281}
+  - component: {fileID: -2175881868613599571}
   m_Layer: 0
   m_Name: enemy stand-in 2
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &178053639945641281
+--- !u!114 &-2175881868613599571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

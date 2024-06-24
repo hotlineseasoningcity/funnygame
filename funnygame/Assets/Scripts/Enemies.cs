@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class Enemies : MonoBehaviour
 {
-    public float baseSpd;
+    public float spd;
+    public GameObject[] pointsArr;
+    Transform currentPoint;
+
+    
+    Rigidbody2D rb;
+    SpriteRenderer sr;
 
     public GameManager gm;
-    public Vector3 dir;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        currentPoint = pointsArr[1].transform;
+    }
 
     private void Update()
     {
-        transform.position += baseSpd * gm.spdEnemies * Time.deltaTime * dir;
+        Vector2 point = currentPoint.position - transform.position;
+        if (currentPoint == pointsArr[1].transform)
+        {
+            rb.velocity = new Vector2(spd, 0);
+        }
+        else
+        {
+            rb.velocity = new Vector2(-spd, 0);
+        }
     }
 }
