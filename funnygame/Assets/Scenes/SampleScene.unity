@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -231,7 +232,7 @@ Transform:
   m_GameObject: {fileID: 333855987}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.568709, y: -0.85968906, z: 0}
+  m_LocalPosition: {x: 4.9, y: 0.33, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -815,8 +816,13 @@ MonoBehaviour:
   pointA: {fileID: 2095650927}
   pointB: {fileID: 989709704}
   blast: {fileID: 821526970}
+  sr: {fileID: 821526972}
+  enableBlastColor: {r: 0.45882356, g: 0.6745098, b: 0.8705883, a: 1}
+  disableBlastColor: {r: 0.45882356, g: 0.6745098, b: 0.8705883, a: 0.22745098}
   player: {fileID: 1346686152}
-  playerInRange: 0
+  isSeeking: 0
+  isBlastActive: 0
+  isOnPlayerRange: 0
 --- !u!68 &1072479070
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -846,7 +852,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

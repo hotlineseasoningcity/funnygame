@@ -9,9 +9,12 @@ public class EnemySeek : MonoBehaviour
 
     public GameObject pointA, pointB, blast;
     public Transform player;
-    public bool isSeeking, isBlastActive, isOnPlayerRange = false;
 
-    Rigidbody2D rb;
+    public SpriteRenderer sr;
+    public Color enableBlastColor;
+    public Color disableBlastColor;
+
+    public bool isSeeking, isBlastActive, isOnPlayerRange = false;
 
     void Seek()
     {
@@ -47,7 +50,7 @@ public class EnemySeek : MonoBehaviour
 
     void BlastPlayer()
     {
-        blast.SetActive(false);
+        sr.color = disableBlastColor;
         
         if (isOnPlayerRange)
         {
@@ -55,7 +58,7 @@ public class EnemySeek : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= interval)
             {
-                blast.SetActive(true);
+                sr.color = enableBlastColor;
             }
         }
         else 
