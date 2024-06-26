@@ -25,6 +25,14 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(horizontal, vertical).normalized * moveSpd;
+        if (horizontal < 0)
+        {
+            sr.flipX = true;
+        }
+        if (horizontal > 0)
+        {
+            sr.flipX = false;
+        }
     }
 
     void Update()

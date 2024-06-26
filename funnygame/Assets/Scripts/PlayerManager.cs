@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemies : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     public float life, dmg, currentDmg;
     public bool isDead;
 
-    public PlayerManager pmScript;
+    public Enemies enemiesScript;
 
     void TakeDmg(float dmg)
     {
@@ -19,11 +19,11 @@ public class Enemies : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Bullet"))
+        if (col.gameObject.CompareTag("Enemy"))
         {
-            TakeDmg(pmScript.dmg);
+            TakeDmg(enemiesScript.dmg);
         }
     }
 }
