@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpd;
     float horizontal, vertical;
 
+    public bool isFacingRight;
+
     Rigidbody2D rb;
     SpriteRenderer sr;
 
@@ -14,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        isFacingRight = true;
     }
 
     void GetPlayerInput()
@@ -27,10 +30,12 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal, vertical).normalized * moveSpd;
         if (horizontal < 0)
         {
+            isFacingRight = false;
             sr.flipX = true;
         }
         if (horizontal > 0)
         {
+            isFacingRight = true;
             sr.flipX = false;
         }
     }
