@@ -18,7 +18,6 @@ public class Health : MonoBehaviour
         if (hp <= 0)
         {
             isDead = true;
-            gameObject.SetActive(false);
         }
     }
 }
