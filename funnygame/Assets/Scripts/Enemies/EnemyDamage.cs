@@ -20,4 +20,12 @@ public class EnemyDamage : MonoBehaviour
             phScript.TakeDamage(dmg);
         }
     }
+
+    void OnTriggerStay2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            phScript.TakeDamage(dmg);
+        }
+    }
 }
