@@ -17,7 +17,7 @@ public class BossMovement : MonoBehaviour
     void Move()
     {
         float y = startPos.y + Mathf.Sin(Time.time * spd) * maxDisFromStart;
-        float x = startPos.x + Mathf.Cos(Time.time * spd) * maxDisFromStart;        
+        float x = startPos.x + Mathf.Cos(Time.time * spd) * maxDisFromStart;
         transform.position = new Vector3(x, y, transform.position.z);
     }
 

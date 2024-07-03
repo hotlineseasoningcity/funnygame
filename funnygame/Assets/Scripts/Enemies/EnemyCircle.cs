@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class EnemyCircle : MonoBehaviour
 {
-    public float circleDis, circleSpd, angle;
+    public float circleDis, circleSpd, angle, horizontalSpd;
     Transform player;
+    Vector3 startPos;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        startPos = transform.position;
     }
 
     void CirclePlayer()
@@ -25,6 +27,11 @@ public class EnemyCircle : MonoBehaviour
             transform.position = new Vector3(x, y, transform.position.z);
 
             transform.rotation = Quaternion.LookRotation(Vector3.forward, player.position - transform.position);
+        }
+        else
+        {
+            float x = startPos.x + Mathf.Cos(Time.time * horizontalSpd);
+            transform.position = new Vector3(x, transform.position.y, transform.position.z);
         }
     }
 

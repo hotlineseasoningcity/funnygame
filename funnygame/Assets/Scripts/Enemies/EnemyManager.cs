@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
     public int minCoinsDropped, maxCoinsDropped, killReward = 5;
     public GameObject coinPrefab;
     public Health hpScript;
-
+    
     void DropCoin()
     {
         Vector3 randomOffset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0f);
@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
             {
                 DropCoin();
                 GameManager.instance.IncreaseScore(killReward);
+                GameManager.instance.EnemyDestroyed();
             }
         }
     }

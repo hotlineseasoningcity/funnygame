@@ -14,11 +14,15 @@ public class EnemySeek : MonoBehaviour
     public Color enableBlastColor;
     public Color disableBlastColor;
 
-    public bool isSeeking, isBlastActive, isOnPlayerRange = false;
+    public bool isSeeking, isOnPlayerRange = false;
+
+    public int dmg;
+    Health phScript;
 
     void Start()
     {
         player = GameObject.Find("Player");
+        phScript = player.GetComponent<Health>();
     }
 
     void Seek()
@@ -64,6 +68,7 @@ public class EnemySeek : MonoBehaviour
             if (timer >= interval)
             {
                 sr.color = enableBlastColor;
+                phScript.TakeDamage(dmg);
             }
         }
         else 

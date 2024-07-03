@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Transform spawnPointBoss;
 
     float timer, spawnInterval = 3f, nextSpawnTime;
+    public int enemiesOnScreen = 0, maxEnemies = 8;
 
     private void Awake()
     {
@@ -33,13 +34,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemies());
+        GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     IEnumerator SpawnEnemies()
     {
         while (true)
         {
-            SpawnEnemy();
+            if (enemiesOnScreen < maxEnemies)
+            {
+                SpawnEnemy();
+            }
             yield return new WaitForSeconds(spawnInterval);
         }
     }
@@ -84,15 +89,17 @@ public class GameManager : MonoBehaviour
         else if (timer >= 300)
         {
             // spawn boss
+            DestroyAllEnemies();
             Instantiate(bossPrefab, spawnPointBoss.position, spawnPointBoss.rotation);
         }
 
-        if (Random.Range(0, 100) < 10 && timer !>= 300)
+        if (Random.Range(0, 100) < 10)
         {
             // spawn enemy type 5 randomly except when boss
             Instantiate(enemyPrefabs[4], spawnPointEnemy5.position, spawnPointEnemy5.rotation);
         }
-
+        
+        enemiesOnScreen++;
         nextSpawnTime = Time.time + spawnInterval;
     }
 
@@ -101,6 +108,20 @@ public class GameManager : MonoBehaviour
         playerScore += amount;
         points.text = "POINTS = " + playerScore;
     }
+
+    public void EnemyDestroyed()
+    {
+        enemiesOnScreen--;
+    }
+
+    void DestroyAllEnemies()
+{
+    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    foreach (GameObject enemy in enemies)
+    {
+        gameObject.SetActive(false);
+    }
+}
 
     void Update()
     {

@@ -12,6 +12,7 @@ public class BossShoot : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, spawnBullet.position, spawnBullet.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = spawnBullet.right * bulletSpd;
+        Destroy(bullet, 3f);
     }
 
     void Update()
