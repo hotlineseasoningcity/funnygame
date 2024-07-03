@@ -7,6 +7,6 @@ public class TitleScreen : MonoBehaviour
 {
     public void ChangeScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Game");
     }
 }
