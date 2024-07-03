@@ -259,6 +259,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9176200800802466027, guid: 470b225656be0a9d99f396574f9f769b, type: 3}
   spawnBullet: {fileID: 5888331676685301699}
-  bulletSpd: 4
-  shootingRate: 1
+  bulletSpd: 6
+  shootingRate: 4
   lastShotTime: 0

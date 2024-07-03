@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int playerScore = 0;
-    public TextMeshProUGUI points;
+    public TextMeshProUGUI points, happyBreak;
 
     public List<GameObject> enemyPrefabs;
     public Transform[] spawnPoints, spawnPointsEnemy1, spawnPointsEnemy5;
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject bossPrefab;
     public Transform spawnPointBoss;
 
-    float timer, spawnInterval = 3f, nextSpawnTime;
+    public float timer, spawnInterval = 3f, nextSpawnTime;
     public int enemiesOnScreen = 0, maxEnemies = 5;
 
     private void Awake()
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(SpawnEnemies());
         GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
+        happyBreak.gameObject.SetActive(false);
     }
 
     IEnumerator SpawnEnemies()
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
             Instantiate(enemyPrefabs[1], spawnPoint.position, spawnPoint.rotation);
             Instantiate(enemyPrefabs[2], spawnPoint.position, spawnPoint.rotation);
         }
-        else if (timer >= 180 && timer < 240)
+        else if (timer >= 180 && timer < 290)
         {
             // spawn enemy type 1 2 3 & 4
             Instantiate(enemyPrefabs[0], spawnPointEnemy1.position, spawnPointEnemy1.rotation);
