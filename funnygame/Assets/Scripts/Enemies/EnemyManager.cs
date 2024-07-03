@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public int minCoinsDropped, maxCoinsDropped;
+    public int minCoinsDropped, maxCoinsDropped, killReward = 5;
     public GameObject coinPrefab;
     public Health hpScript;
 
@@ -24,6 +24,7 @@ public class EnemyManager : MonoBehaviour
             for (int i = 0; i < coinsToDrop; i++)
             {
                 DropCoin();
+                GameManager.instance.IncreaseScore(killReward);
             }
         }
     }

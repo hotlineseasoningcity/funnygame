@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public int playerScore = 0;
+    public TextMeshProUGUI points;
 
     public List<GameObject> enemyPrefabs;
     public Transform[] spawnPoints, spawnPointsEnemy1, spawnPointsEnemy5;
@@ -40,11 +44,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        timer += Time.deltaTime;
-    }
-
     void SpawnEnemy()
     {
         int randomI = Random.Range(0, spawnPoints.Length);
@@ -62,17 +61,23 @@ public class GameManager : MonoBehaviour
         }
         else if (timer >= 60 && timer < 120)
         {
-            // spawn enemy type 2
+            // spawn enemy type 1 & 2
+            Instantiate(enemyPrefabs[0], spawnPointEnemy1.position, spawnPointEnemy1.rotation);
             Instantiate(enemyPrefabs[1], spawnPoint.position, spawnPoint.rotation);
         }
         else if (timer >= 120 && timer < 180)
         {
-            // spawn enemy type 3
+            // spawn enemy type 1 2 & 3
+            Instantiate(enemyPrefabs[0], spawnPointEnemy1.position, spawnPointEnemy1.rotation);
+            Instantiate(enemyPrefabs[1], spawnPoint.position, spawnPoint.rotation);
             Instantiate(enemyPrefabs[2], spawnPoint.position, spawnPoint.rotation);
         }
         else if (timer >= 180 && timer < 240)
         {
-            // spawn enemy type 4
+            // spawn enemy type 1 2 3 & 4
+            Instantiate(enemyPrefabs[0], spawnPointEnemy1.position, spawnPointEnemy1.rotation);
+            Instantiate(enemyPrefabs[1], spawnPoint.position, spawnPoint.rotation);
+            Instantiate(enemyPrefabs[2], spawnPoint.position, spawnPoint.rotation);
             Instantiate(enemyPrefabs[3], spawnPoint.position, spawnPoint.rotation);
         }
 
@@ -82,12 +87,23 @@ public class GameManager : MonoBehaviour
             Instantiate(bossPrefab, spawnPointBoss.position, spawnPointBoss.rotation);
         }
 
-        if (Random.Range(0, 100) < 10)
+        if (Random.Range(0, 100) < 10 && timer !>= 300)
         {
-            // spawn enemy type 5 randomly
+            // spawn enemy type 5 randomly except when boss
             Instantiate(enemyPrefabs[4], spawnPointEnemy5.position, spawnPointEnemy5.rotation);
         }
 
         nextSpawnTime = Time.time + spawnInterval;
+    }
+
+    public void IncreaseScore(int amount)
+    {
+        playerScore += amount;
+        points.text = "POINTS = " + playerScore;
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
     }
 }
