@@ -21,7 +21,7 @@ public class EnemyDamage : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collision2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {

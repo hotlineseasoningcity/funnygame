@@ -8,13 +8,18 @@ public class EnemySeek : MonoBehaviour
     public float timer, interval;
 
     public GameObject pointA, pointB, blast;
-    public Transform player;
+    public GameObject player;
 
     public SpriteRenderer sr;
     public Color enableBlastColor;
     public Color disableBlastColor;
 
     public bool isSeeking, isBlastActive, isOnPlayerRange = false;
+
+    void Start()
+    {
+        player = GameObject.Find("Player");
+    }
 
     void Seek()
     {
@@ -34,7 +39,7 @@ public class EnemySeek : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == player.gameObject)
+        if (other.gameObject == player)
         {
             isOnPlayerRange = true;
         }
@@ -42,7 +47,7 @@ public class EnemySeek : MonoBehaviour
     
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject == player.gameObject)
+        if (other.gameObject == player)
         {
             isOnPlayerRange = false;
         }

@@ -47,12 +47,12 @@ TagManager:
   - name: NotMiku Gun
     uniqueID: 3485886611
     locked: 0
-  - name: Player
-    uniqueID: 4174730267
-    locked: 0
   - name: Enemies
     uniqueID: 3151926207
     locked: 0
   - name: NotMiku
     uniqueID: 308438977
+    locked: 0
+  - name: Player
+    uniqueID: 4174730267
     locked: 0
