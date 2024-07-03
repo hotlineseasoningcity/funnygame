@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public Transform spawnPointBoss;
 
     float timer, spawnInterval = 3f, nextSpawnTime;
+    public int enemiesOnScreen = 0, maxEnemies = 8;
+
+    public Health ehScript;
 
     private void Awake()
     {
@@ -33,13 +36,18 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemies());
+        GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
+        ehScript = enemy.GetComponent<Health>();
     }
 
     IEnumerator SpawnEnemies()
     {
         while (true)
         {
-            SpawnEnemy();
+            if (enemiesOnScreen < maxEnemies)
+            {
+                SpawnEnemy();
+            }
             yield return new WaitForSeconds(spawnInterval);
         }
     }
@@ -92,7 +100,8 @@ public class GameManager : MonoBehaviour
             // spawn enemy type 5 randomly except when boss
             Instantiate(enemyPrefabs[4], spawnPointEnemy5.position, spawnPointEnemy5.rotation);
         }
-
+        
+        enemiesOnScreen++;
         nextSpawnTime = Time.time + spawnInterval;
     }
 
@@ -100,6 +109,14 @@ public class GameManager : MonoBehaviour
     {
         playerScore += amount;
         points.text = "POINTS = " + playerScore;
+    }
+
+    void EnemyDestroyed()
+    {
+        if (ehScript.isDead)
+        {
+            enemiesOnScreen--;
+        }
     }
 
     void Update()
