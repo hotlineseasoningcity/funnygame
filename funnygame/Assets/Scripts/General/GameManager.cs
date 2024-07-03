@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public Transform spawnPointBoss;
 
     float timer, spawnInterval = 3f, nextSpawnTime;
-    public int enemiesOnScreen = 0, maxEnemies = 8;
+    public int enemiesOnScreen = 0, maxEnemies = 5;
 
     private void Awake()
     {
